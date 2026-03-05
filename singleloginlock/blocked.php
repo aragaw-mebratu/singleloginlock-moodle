@@ -1,6 +1,10 @@
 <?php
 require_once(__DIR__ . '/../../config.php');
 
+if (!\local_singleloginlock\session_guard::is_plugin_enabled()) {
+    redirect(new moodle_url('/login/index.php'));
+}
+
 $context = context_system::instance();
 $pageurl = new moodle_url('/local/singleloginlock/blocked.php');
 $loginurl = new moodle_url('/login/index.php');

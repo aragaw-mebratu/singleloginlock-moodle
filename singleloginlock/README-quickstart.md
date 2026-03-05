@@ -34,6 +34,13 @@ Typical policy:
 
 Site admins are exempt by plugin logic.
 
+## Plugin on/off switch
+
+You can disable behavior without uninstall:
+
+- Go to plugin settings and set `Enable plugin` to disabled.
+- Re-enable anytime from the same setting.
+
 ## 4) Optional takeover checkbox
 
 If you want one-time takeover override:
@@ -64,4 +71,3 @@ If you want one-time takeover override:
 - Behavior not updating: run upgrade + purge caches.
 - Students not enforced: verify role/capability assignment.
 - Message missing: verify redirect reaches `/local/singleloginlock/blocked.php`.
-

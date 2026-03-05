@@ -15,6 +15,10 @@ class hook_callbacks {
     ): void {
         global $PAGE, $OUTPUT;
 
+        if (!session_guard::is_plugin_enabled()) {
+            return;
+        }
+
         if (defined('CLI_SCRIPT') && CLI_SCRIPT) {
             return;
         }

@@ -20,6 +20,20 @@ class session_guard {
     private static int $allowloginfieldid = -1;
 
     /**
+     * Whether plugin runtime logic is enabled.
+     *
+     * @return bool
+     */
+    public static function is_plugin_enabled(): bool {
+        $enabled = get_config('local_singleloginlock', 'enabled');
+        // Default to enabled when setting not yet stored.
+        if ($enabled === false || $enabled === null) {
+            return true;
+        }
+        return !empty($enabled);
+    }
+
+    /**
      * Whether lock enforcement applies to a user.
      *
      * @param int $userid 0 means current user.
@@ -235,6 +249,30 @@ class session_guard {
         }
 
         self::$allowlogincache[$userid] = false;
+    }
+
+    /**
+     * Destroy all sessions for a user except the current session, with Moodle 4/5 API compatibility.
+     *
+     * @param int $userid
+     * @param string $keepsid
+     * @return void
+     */
+    public static function destroy_other_user_sessions(int $userid, string $keepsid): void {
+        if ($userid <= 0 || $keepsid === '') {
+            return;
+        }
+
+        $managerclass = \core\session\manager::class;
+        if (is_callable([$managerclass, 'destroy_user_sessions'])) {
+            $managerclass::destroy_user_sessions($userid, $keepsid);
+            return;
+        }
+
+        // Moodle 4.x API.
+        if (is_callable([$managerclass, 'kill_user_sessions'])) {
+            $managerclass::kill_user_sessions($userid, $keepsid);
+        }
     }
 
     /**

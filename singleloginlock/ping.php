@@ -12,6 +12,11 @@ if (!isloggedin() || isguestuser()) {
     exit;
 }
 
+if (!\local_singleloginlock\session_guard::is_plugin_enabled()) {
+    echo json_encode(['ok' => true, 'loggedin' => true, 'enabled' => false]);
+    exit;
+}
+
 require_sesskey();
 
 \local_singleloginlock\session_guard::heartbeat_current_session();

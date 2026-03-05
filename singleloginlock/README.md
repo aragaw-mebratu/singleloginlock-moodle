@@ -132,6 +132,23 @@ Common policy:
 
 Site admins are exempt by plugin logic.
 
+## Plugin enable/disable (no uninstall required)
+
+You can toggle plugin runtime behavior from admin settings:
+
+- Setting: `Enable plugin`
+- Location: `Site administration > Plugins > Local plugins > Single login lock`
+
+When disabled:
+
+- New login conflicts are not blocked.
+- Heartbeat logic does not run.
+- Blocked page redirects to standard login page.
+
+When re-enabled:
+
+- Normal enforcement resumes immediately.
+
 ## Step 2: Optional takeover override checkbox
 
 Create custom profile field:
@@ -246,4 +263,3 @@ Data impact:
 - This is not real-time push logout (no WebSocket/SSE).
 - Enforcement timing depends on heartbeat interval and active window.
 - If custom SSO/auth plugins alter normal login/session flow, additional integration testing is required.
-

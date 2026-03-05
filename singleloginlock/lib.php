@@ -20,6 +20,9 @@ function local_singleloginlock_extend_navigation(global_navigation $navigation):
     if (!isloggedin() || isguestuser()) {
         return;
     }
+    if (!\local_singleloginlock\session_guard::is_plugin_enabled()) {
+        return;
+    }
     if (!\local_singleloginlock\session_guard::is_enforced_for_user()) {
         return;
     }
