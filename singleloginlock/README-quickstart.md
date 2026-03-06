@@ -40,6 +40,7 @@ You can disable behavior without uninstall:
 
 - Go to plugin settings and set `Enable plugin` to disabled.
 - Re-enable anytime from the same setting.
+- On re-enable, users with multiple active sessions are logged out and must login again.
 
 ## 4) Optional takeover checkbox
 

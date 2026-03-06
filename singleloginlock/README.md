@@ -148,6 +148,8 @@ When disabled:
 When re-enabled:
 
 - Normal enforcement resumes immediately.
+- Enforced users with more than one active session are logged out (all their sessions are terminated), so they must login again with a single active session.
+- If a stale page remains open, the next request/heartbeat also forces logout for that multi-session user.
 
 ## Step 2: Optional takeover override checkbox
 

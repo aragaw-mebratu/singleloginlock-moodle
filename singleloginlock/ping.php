@@ -19,5 +19,11 @@ if (!\local_singleloginlock\session_guard::is_plugin_enabled()) {
 
 require_sesskey();
 
-\local_singleloginlock\session_guard::heartbeat_current_session();
+$stillvalid = \local_singleloginlock\session_guard::heartbeat_current_session();
+if (!$stillvalid || !isloggedin() || isguestuser()) {
+    http_response_code(401);
+    echo json_encode(['ok' => false, 'loggedin' => false]);
+    exit;
+}
+
 echo json_encode(['ok' => true, 'loggedin' => true]);
