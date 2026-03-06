@@ -153,7 +153,7 @@ When re-enabled:
 
 ## Step 2: Optional takeover override checkbox
 
-Create custom profile field:
+From `1.13.0+`, plugin install/upgrade auto-creates this custom profile field if missing:
 
 - Type: Checkbox
 - Shortname: `singleloginlock_allowlogin`

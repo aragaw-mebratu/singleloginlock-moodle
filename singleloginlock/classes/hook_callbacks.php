@@ -23,6 +23,12 @@ class hook_callbacks {
             return;
         }
 
+        if (isloggedin() && !isguestuser()) {
+            if (!session_guard::enforce_current_user_single_session()) {
+                redirect(new \moodle_url('/login/index.php', ['sessionexpired' => 1]));
+            }
+        }
+
         $showblocked = optional_param('singleloginlock', 0, PARAM_BOOL);
         if (!$showblocked || empty($PAGE->url)) {
             return;

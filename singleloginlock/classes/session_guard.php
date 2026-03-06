@@ -448,7 +448,18 @@ class session_guard {
             'userid = :userid AND timemodified >= :cutoff',
             ['userid' => $userid, 'cutoff' => $cutoff]
         );
-        return $count > 1;
+        if ($count > 1) {
+            return true;
+        }
+
+        // Fallback for non-DB session handlers: detect active SID conflict directly.
+        $currentsid = (string)session_id();
+        $activesid = (string)get_user_preferences(self::PREF_ACTIVE_SID, '', $userid);
+        if ($currentsid === '' || $activesid === '' || $currentsid === $activesid) {
+            return false;
+        }
+
+        return \core\session\manager::session_exists($activesid);
     }
 
     /**

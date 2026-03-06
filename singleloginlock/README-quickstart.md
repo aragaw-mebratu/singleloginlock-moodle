@@ -44,13 +44,12 @@ You can disable behavior without uninstall:
 
 ## 4) Optional takeover checkbox
 
-If you want one-time takeover override:
+From `1.13.0+`, this custom profile checkbox is auto-created on install/upgrade if missing:
 
-1. Create custom profile field:
 - Type: `Checkbox`
 - Shortname: `singleloginlock_allowlogin`
-2. Check it for a user when you want to allow takeover.
-3. After successful login, plugin auto-unchecks it.
+
+Check it for a user when you want to allow takeover; after successful login, plugin auto-unchecks it.
 
 ## 5) Current defaults
 
