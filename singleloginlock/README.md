@@ -1,4 +1,4 @@
-# local_singleloginlock
+# singleloginlock
 
 Single active login control for Moodle with role-based enforcement, stale-session tolerance, and optional one-time takeover override.
 
@@ -225,12 +225,6 @@ Requirement:
 2. Repeat conflict login.
 3. Verify B is allowed and A is logged out.
 4. Verify checkbox auto-resets to unchecked.
-
-## Exemption
-
-1. Login as site admin on A.
-2. Login same admin on B.
-3. Verify no block (admin exempt).
 
 ## Troubleshooting
 
