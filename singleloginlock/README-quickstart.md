@@ -38,13 +38,20 @@ Site admins are exempt by plugin logic.
 
 You can disable behavior without uninstall:
 
-- Go to plugin settings and set `Enable plugin` to disabled.
+- Go to `Site administration > Plugins > Single login lock > Single login lock` and set `Enable plugin` to disabled.
 - Re-enable anytime from the same setting.
 - On re-enable, users with multiple active sessions are logged out and must login again.
 
+## Manage page
+
+Use `Site administration > Plugins > Single login lock > Manage` for the management table:
+
+- `Name`, `Version`, `Enable`, `Settings`, `Uninstall`
+- `Enable` uses Moodle eye icons (`show/hide`) to toggle plugin state.
+
 ## 4) Optional takeover checkbox
 
-From `1.13.0+`, this custom profile checkbox is auto-created on install/upgrade if missing:
+This custom profile checkbox is auto-created on install/upgrade if missing:
 
 - Type: `Checkbox`
 - Shortname: `singleloginlock_allowlogin`

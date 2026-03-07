@@ -137,7 +137,7 @@ Site admins are exempt by plugin logic.
 You can toggle plugin runtime behavior from admin settings:
 
 - Setting: `Enable plugin`
-- Location: `Site administration > Plugins > Local plugins > Single login lock`
+- Location: `Site administration > Plugins > Single login lock > Single login lock`
 
 When disabled:
 
@@ -151,9 +151,17 @@ When re-enabled:
 - Enforced users with more than one active session are logged out (all their sessions are terminated), so they must login again with a single active session.
 - If a stale page remains open, the next request/heartbeat also forces logout for that multi-session user.
 
+## Manage page
+
+Plugin management page:
+
+- Location: `Site administration > Plugins > Single login lock > Manage`
+- Shows columns: `Name`, `Version`, `Enable`, `Settings`, `Uninstall`
+- Enable/Disable uses Moodle eye icons (`show/hide`) for a standard toggle experience.
+
 ## Step 2: Optional takeover override checkbox
 
-From `1.13.0+`, plugin install/upgrade auto-creates this custom profile field if missing:
+Plugin install/upgrade auto-creates this custom profile field if missing:
 
 - Type: Checkbox
 - Shortname: `singleloginlock_allowlogin`
@@ -250,6 +258,10 @@ Always:
 1. Replace plugin code with new package.
 2. Run Moodle upgrade.
 3. Purge caches.
+
+## License
+
+This plugin is distributed under GNU GPL v3 or later. See `LICENSE`.
 
 ## Uninstall
 
