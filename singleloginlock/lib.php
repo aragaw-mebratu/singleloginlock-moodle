@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -118,3 +119,4 @@ JS;
 function local_singleloginlock_enabled_updated(): void {
     \local_singleloginlock\session_guard::handle_enabled_setting_update();
 }
+

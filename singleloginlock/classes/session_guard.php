@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -413,7 +414,7 @@ class session_guard {
      * @return int
      */
     private static function get_allowlogin_fieldid(): int {
-        global $DB;
+        global $DB, $CFG;
 
         if (self::$allowloginfieldid !== -1) {
             return self::$allowloginfieldid;
@@ -424,6 +425,20 @@ class session_guard {
             'id',
             ['shortname' => self::PROFILE_FIELD_ALLOWLOGIN, 'datatype' => 'checkbox']
         );
+
+        if (self::$allowloginfieldid <= 0) {
+            $ready = (string)get_config('local_singleloginlock', 'allowlogin_field_ready');
+            if ($ready !== '1') {
+                require_once($CFG->dirroot . '/local/singleloginlock/db/upgrade.php');
+                local_singleloginlock_ensure_allowlogin_profile_field();
+                self::$allowloginfieldid = (int)$DB->get_field(
+                    'user_info_field',
+                    'id',
+                    ['shortname' => self::PROFILE_FIELD_ALLOWLOGIN, 'datatype' => 'checkbox']
+                );
+            }
+        }
+
         return self::$allowloginfieldid;
     }
 
@@ -531,3 +546,4 @@ class session_guard {
         $managerclass::$method($userid);
     }
 }
+

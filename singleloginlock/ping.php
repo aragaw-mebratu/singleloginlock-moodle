@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -23,10 +24,7 @@
 define('AJAX_SCRIPT', true);
 
 require_once(__DIR__ . '/../../config.php');
-
-if (isloggedin() && !isguestuser()) {
-    require_login();
-}
+require_login();
 
 @header('Content-Type: application/json; charset=utf-8');
 @header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
@@ -52,3 +50,4 @@ if (!$stillvalid || !isloggedin() || isguestuser()) {
 }
 
 echo json_encode(['ok' => true, 'loggedin' => true]);
+

@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -48,6 +49,7 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
         if ($needsupdate) {
             $DB->update_record('user_info_field', $existing);
         }
+        set_config('allowlogin_field_ready', 1, 'local_singleloginlock');
         return;
     }
 
@@ -86,6 +88,8 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
 
     $definition = new \profile_define_checkbox();
     $definition->define_save($field);
+
+    set_config('allowlogin_field_ready', 1, 'local_singleloginlock');
 }
 
 /**
@@ -112,3 +116,4 @@ function xmldb_local_singleloginlock_upgrade(int $oldversion): bool {
 
     return true;
 }
+

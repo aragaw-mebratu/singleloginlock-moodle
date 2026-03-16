@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -56,7 +57,8 @@ class observer {
             }
 
             // Keep the older active session and deny this new login.
-            \core\session\manager::terminate_current();
+            global $SESSION;
+            $SESSION->singleloginlock_blocked = 1;
 
             if (
                 !(defined('CLI_SCRIPT') && CLI_SCRIPT) &&
@@ -74,3 +76,4 @@ class observer {
         }
     }
 }
+

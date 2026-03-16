@@ -172,7 +172,7 @@ Plugin install/upgrade auto-creates this custom profile field if missing:
 - Type: Checkbox
 - Shortname: `singleloginlock_allowlogin`
 - Field is locked so users cannot edit it themselves (admins can).
-- Field is set to Not visible by default.
+- Field is set to Not visible by default (admins only).
 
 If checked for a user, conflict login can take over (new session wins, older sessions terminated), then the checkbox auto-unchecks.
 

@@ -61,7 +61,7 @@ This custom profile checkbox is auto-created on install/upgrade if missing:
 - Type: `Checkbox`
 - Shortname: `singleloginlock_allowlogin`
 - Field is locked so users cannot edit it themselves (admins can).
-- Field is set to Not visible by default.
+- Field is set to Not visible by default (admins only).
 
 Check it for a user when you want to allow takeover; after successful login, plugin auto-unchecks it.
 

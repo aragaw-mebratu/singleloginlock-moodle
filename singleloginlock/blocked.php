@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -21,14 +22,16 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once(__DIR__ . '/../../config.php');
-
-if (isloggedin() && !isguestuser()) {
-    require_login();
-}
+require_login();
 
 if (!\local_singleloginlock\session_guard::is_plugin_enabled()) {
     redirect(new moodle_url('/login/index.php'));
 }
+
+if (empty($SESSION->singleloginlock_blocked)) {
+    redirect(new moodle_url('/login/index.php'));
+}
+unset($SESSION->singleloginlock_blocked);
 
 $context = context_system::instance();
 $pageurl = new moodle_url('/local/singleloginlock/blocked.php');
@@ -50,3 +53,5 @@ echo html_writer::div(
     'singleloginlock-actions'
 );
 echo $OUTPUT->footer();
+\core\session\manager::terminate_current();
+

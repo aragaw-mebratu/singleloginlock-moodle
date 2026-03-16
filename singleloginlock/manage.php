@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -85,3 +86,4 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('managepage', 'local_singleloginlock'));
 echo html_writer::table($table);
 echo $OUTPUT->footer();
+

@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin install steps.
  *
@@ -32,3 +33,4 @@ function xmldb_local_singleloginlock_install(): void {
     require_once($CFG->dirroot . '/local/singleloginlock/db/upgrade.php');
     local_singleloginlock_ensure_allowlogin_profile_field();
 }
+

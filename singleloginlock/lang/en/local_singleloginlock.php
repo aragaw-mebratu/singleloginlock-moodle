@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Single login lock plugin.
  *
@@ -43,3 +44,4 @@ $string['settingslabel'] = 'Settings';
 $string['settingspage'] = 'Settings';
 $string['singleloginlock:enforce'] = 'Be subject to single-login lock enforcement';
 $string['uninstalllabel'] = 'Uninstall';
+
