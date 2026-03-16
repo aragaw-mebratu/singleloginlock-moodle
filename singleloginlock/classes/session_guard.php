@@ -18,7 +18,7 @@
  * Single login lock plugin.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace local_singleloginlock;
@@ -546,4 +546,3 @@ class session_guard {
         $managerclass::$method($userid);
     }
 }
-

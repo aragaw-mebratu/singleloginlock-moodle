@@ -18,7 +18,7 @@
  * Single login lock plugin install steps.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -33,4 +33,3 @@ function xmldb_local_singleloginlock_install(): void {
     require_once($CFG->dirroot . '/local/singleloginlock/db/upgrade.php');
     local_singleloginlock_ensure_allowlogin_profile_field();
 }
-

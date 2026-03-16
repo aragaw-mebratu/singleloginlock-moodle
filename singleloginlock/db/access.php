@@ -18,7 +18,7 @@
  * Single login lock plugin.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -37,4 +37,3 @@ $capabilities = [
         'archetypes' => [],
     ],
 ];
-

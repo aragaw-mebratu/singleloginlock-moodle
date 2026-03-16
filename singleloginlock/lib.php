@@ -18,7 +18,7 @@
  * Single login lock plugin.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 /**
@@ -119,4 +119,3 @@ JS;
 function local_singleloginlock_enabled_updated(): void {
     \local_singleloginlock\session_guard::handle_enabled_setting_update();
 }
-

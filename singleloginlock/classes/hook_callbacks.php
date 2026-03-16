@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Single login lock plugin.
+ * Hook callbacks for local_singleloginlock.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace local_singleloginlock;
@@ -70,4 +70,3 @@ class hook_callbacks {
         ));
     }
 }
-

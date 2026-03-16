@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Single login lock plugin.
+ * Blocked page when a user attempts a second login.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once(__DIR__ . '/../../config.php');
@@ -54,4 +54,3 @@ echo html_writer::div(
 );
 echo $OUTPUT->footer();
 \core\session\manager::terminate_current();
-

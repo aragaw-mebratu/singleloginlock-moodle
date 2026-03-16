@@ -18,7 +18,7 @@
  * Single login lock plugin.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('AJAX_SCRIPT', true);
@@ -50,4 +50,3 @@ if (!$stillvalid || !isloggedin() || isguestuser()) {
 }
 
 echo json_encode(['ok' => true, 'loggedin' => true]);
-

@@ -18,7 +18,7 @@
  * Single login lock plugin.
  *
  * @package    local_singleloginlock
- * @copyright  2026
+ * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once(__DIR__ . '/../../config.php');
@@ -86,4 +86,3 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('managepage', 'local_singleloginlock'));
 echo html_writer::table($table);
 echo $OUTPUT->footer();
-
