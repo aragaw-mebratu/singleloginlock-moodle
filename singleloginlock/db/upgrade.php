@@ -33,8 +33,12 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
     require_once($CFG->dirroot . '/user/profile/field/checkbox/define.class.php');
 
     $shortname = \local_singleloginlock\session_guard::PROFILE_FIELD_ALLOWLOGIN;
-    $existing = $DB->get_record('user_info_field', ['shortname' => $shortname], 'id, datatype', IGNORE_MISSING);
+    $existing = $DB->get_record('user_info_field', ['shortname' => $shortname], 'id, datatype, locked', IGNORE_MISSING);
     if (!empty($existing)) {
+        if ((int)$existing->locked !== 1) {
+            $existing->locked = 1;
+            $DB->update_record('user_info_field', $existing);
+        }
         return;
     }
 
@@ -57,7 +61,7 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
         'description' => '',
         'descriptionformat' => FORMAT_HTML,
         'required' => 0,
-        'locked' => 0,
+        'locked' => 1,
         'visible' => $visibleall,
         'forceunique' => 0,
         'signup' => 0,
@@ -90,6 +94,11 @@ function xmldb_local_singleloginlock_upgrade(int $oldversion): bool {
     if ($oldversion < 2026030604) {
         local_singleloginlock_ensure_allowlogin_profile_field();
         upgrade_plugin_savepoint(true, 2026030604, 'local', 'singleloginlock');
+    }
+
+    if ($oldversion < 2026031600) {
+        local_singleloginlock_ensure_allowlogin_profile_field();
+        upgrade_plugin_savepoint(true, 2026031600, 'local', 'singleloginlock');
     }
 
     return true;
