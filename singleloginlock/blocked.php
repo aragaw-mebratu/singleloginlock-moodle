@@ -21,6 +21,9 @@
  * @copyright  2026 Aragaw Mebratu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined('MOODLE_INTERNAL') || die();
+
 require_once(__DIR__ . '/../../config.php');
 require_login();
 
@@ -53,4 +56,5 @@ echo html_writer::div(
     'singleloginlock-actions'
 );
 echo $OUTPUT->footer();
+
 \core\session\manager::terminate_current();
