@@ -90,6 +90,22 @@ class session_guard {
             return true;
         }
 
+        $configuredroles = (string)get_config('local_singleloginlock', 'enforcedroles');
+        if ($configuredroles !== '') {
+            $roleids = array_values(array_filter(array_map('intval', explode(',', $configuredroles))));
+            if (!empty($roleids)) {
+                [$insql, $params] = $DB->get_in_or_equal($roleids, SQL_PARAMS_NAMED, 'roleid');
+                $params['userid'] = $userid;
+                $sql = "SELECT 1
+                          FROM {role_assignments} ra
+                         WHERE ra.userid = :userid
+                           AND ra.roleid {$insql}";
+                $isenforced = $DB->record_exists_sql($sql, $params);
+                self::$enforcedcache[$userid] = $isenforced;
+                return $isenforced;
+            }
+        }
+
         // Fallback: enforce for users assigned any role derived from the Student archetype.
         $sql = "SELECT 1
                   FROM {role_assignments} ra

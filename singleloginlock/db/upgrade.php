@@ -33,10 +33,19 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
     require_once($CFG->dirroot . '/user/profile/field/checkbox/define.class.php');
 
     $shortname = \local_singleloginlock\session_guard::PROFILE_FIELD_ALLOWLOGIN;
-    $existing = $DB->get_record('user_info_field', ['shortname' => $shortname], 'id, datatype, locked', IGNORE_MISSING);
+    $existing = $DB->get_record('user_info_field', ['shortname' => $shortname], 'id, datatype, locked, visible', IGNORE_MISSING);
     if (!empty($existing)) {
+        $visiblenone = defined('PROFILE_VISIBLE_NONE') ? (int)PROFILE_VISIBLE_NONE : 0;
+        $needsupdate = false;
         if ((int)$existing->locked !== 1) {
             $existing->locked = 1;
+            $needsupdate = true;
+        }
+        if ((int)$existing->visible !== $visiblenone) {
+            $existing->visible = $visiblenone;
+            $needsupdate = true;
+        }
+        if ($needsupdate) {
             $DB->update_record('user_info_field', $existing);
         }
         return;
@@ -52,7 +61,7 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
         $categoryid = (int)$DB->insert_record('user_info_category', $category);
     }
 
-    $visibleall = defined('PROFILE_VISIBLE_ALL') ? (int)PROFILE_VISIBLE_ALL : 2;
+    $visiblenone = defined('PROFILE_VISIBLE_NONE') ? (int)PROFILE_VISIBLE_NONE : 0;
 
     $field = (object)[
         'datatype' => 'checkbox',
@@ -62,7 +71,7 @@ function local_singleloginlock_ensure_allowlogin_profile_field(): void {
         'descriptionformat' => FORMAT_HTML,
         'required' => 0,
         'locked' => 1,
-        'visible' => $visibleall,
+        'visible' => $visiblenone,
         'forceunique' => 0,
         'signup' => 0,
         'categoryid' => $categoryid,

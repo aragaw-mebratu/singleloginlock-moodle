@@ -132,6 +132,12 @@ Common policy:
 
 Site admins are exempt by plugin logic.
 
+You can also select explicit roles in settings:
+
+- Setting: `Enforced roles`
+- Location: `Site administration > Plugins > Single login lock > Single login lock`
+- If roles are selected, enforcement applies to users assigned any of those roles (useful for custom roles).
+
 ## Plugin enable/disable (no uninstall required)
 
 You can toggle plugin runtime behavior from admin settings:
@@ -166,6 +172,7 @@ Plugin install/upgrade auto-creates this custom profile field if missing:
 - Type: Checkbox
 - Shortname: `singleloginlock_allowlogin`
 - Field is locked so users cannot edit it themselves (admins can).
+- Field is set to Not visible by default.
 
 If checked for a user, conflict login can take over (new session wins, older sessions terminated), then the checkbox auto-unchecks.
 

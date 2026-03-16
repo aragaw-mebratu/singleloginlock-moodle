@@ -46,6 +46,20 @@ if ($hassiteconfig) {
     );
     $enabledsetting->set_updatedcallback('local_singleloginlock_enabled_updated');
     $settings->add($enabledsetting);
+
+    $roleoptions = [];
+    $roles = get_all_roles();
+    foreach ($roles as $role) {
+        $roleoptions[$role->id] = role_get_name($role, \context_system::instance(), ROLENAME_BOTH);
+    }
+    $enforcedroles = new admin_setting_configmultiselect(
+        'local_singleloginlock/enforcedroles',
+        get_string('settings:enforcedroles', 'local_singleloginlock'),
+        get_string('settings:enforcedroles_desc', 'local_singleloginlock'),
+        [],
+        $roleoptions
+    );
+    $settings->add($enforcedroles);
     $ADMIN->add($categoryname, $settings);
 
     if (!$ADMIN->locate('local_singleloginlock_manage')) {

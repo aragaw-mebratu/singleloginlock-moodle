@@ -34,6 +34,11 @@ Typical policy:
 
 Site admins are exempt by plugin logic.
 
+Optional role list:
+
+- Setting: `Enforced roles` (select roles for enforcement, useful for custom roles)
+- Location: `Site administration > Plugins > Single login lock > Single login lock`
+
 ## Plugin on/off switch
 
 You can disable behavior without uninstall:
@@ -56,6 +61,7 @@ This custom profile checkbox is auto-created on install/upgrade if missing:
 - Type: `Checkbox`
 - Shortname: `singleloginlock_allowlogin`
 - Field is locked so users cannot edit it themselves (admins can).
+- Field is set to Not visible by default.
 
 Check it for a user when you want to allow takeover; after successful login, plugin auto-unchecks it.
 
